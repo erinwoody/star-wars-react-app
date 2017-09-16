@@ -21,7 +21,6 @@ class App extends Component {
   // handleNameChange below:
   // See form lesson for details.
   // Enter your code below:
-
   handleNameChange(event) {
     this.setState({ value: event.target.value });
   }
@@ -49,8 +48,15 @@ class App extends Component {
   // In your response look for 'results'. It should return this array.
   // You will want to use this array when you set the state of 'vehicles'. You will need this data in your render.
   // Enter your code below:
-  
-
+  componentWillMount() {
+    fetch('https://swapi.co/api/vehicles/').then((response) => {
+      return response.json()
+    }).then((data) => {
+      let vehicles = data.results;
+      console.log(vehicles)
+      this.setState({ vehicles: vehicles })
+    })
+  }
 
   // RENDER
   // Before you can map over the data you've fetched, you will first need to store that 'state' in a variable.
